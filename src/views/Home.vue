@@ -1,18 +1,52 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- {{ this.$store.state.name }}
+    {{ this.$store.state.age }} -->
+    {{ name }}:
+    {{ age }}
+    <div>
+      <button @click="handleClick">方式1 按钮使用 mutation 中方法</button>
+    </div>
+    <div>
+      <button @click="setName('小浪')">方式2 按钮使用 mutation 中方法</button>
+    </div>
+    <div>
+      <button @click="changeName2('小浪')">方式1 按钮使用 action 中方法</button>
+    </div>
+    <div>
+      <button @click="changeNameAsync('小浪2')">
+        方式2 按钮使用 action 中方法
+      </button>
+    </div>
+    <div>
+      {{ this.$store.getters.getterName }}
+    </div>
+    <div>
+      {{ this.$store.state.animal.animalName }}
+    </div>
+    <div>使用命名空间namespaced更方便:{{ animalName }}</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld,
+  components: {},
+  computed: {
+    ...mapState(['name', 'age']),
+    ...mapState('animal', ['animalName']),
+    ...mapGetters(['getterName']),
+  },
+  methods: {
+    ...mapMutations(['setName']),
+    ...mapActions(['changeNameAsync']),
+    handleClick() {
+      this.$store.commit('setName', '李四')
+    },
+    changeName2() {
+      this.$store.dispatch('changeNameAsync', '王五')
+    },
   },
 }
 </script>
