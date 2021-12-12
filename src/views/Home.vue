@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <!-- {{ this.$store.state.name }}
-    {{ this.$store.state.age }} -->
+    <div>{{ this.$store.state.name }} {{ this.$store.state.age }}</div>
     {{ name }}:
     {{ age }}
     <div>
@@ -21,21 +20,28 @@
     <div>
       {{ this.$store.getters.getterName }}
     </div>
-    <div>
+    <!-- <div>
       {{ this.$store.state.animal.animalName }}
     </div>
-    <div>使用命名空间namespaced更方便:{{ animalName }}</div>
+    <div>使用命名空间namespaced更方便:{{ animalName }}</div> -->
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+// import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import {
+  mapState,
+  mapMutations,
+  mapActions,
+  mapGetters,
+} from '../my-vuex/index'
+
 export default {
   name: 'Home',
   components: {},
   computed: {
     ...mapState(['name', 'age']),
-    ...mapState('animal', ['animalName']),
+    // ...mapState('animal', ['animalName']),
     ...mapGetters(['getterName']),
   },
   methods: {

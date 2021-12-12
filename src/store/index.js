@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-import animal from './module/animal'
+// import Vuex from 'vuex'
+import Vuex from '../my-vuex/index'
+// import animal from './module/animal'
 
 Vue.use(Vuex)
 
@@ -27,7 +28,7 @@ export default new Vuex.Store({
       }, 1000)
     },
   },
-  modules: {
-    animal,
-  },
+  // modules: {
+  //   animal,
+  // },
 })
